@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XmStealAbrainrotmX - Trial Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #001a00, #003d00, #002200);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background particles */
+        .bg-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #00ff00;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) scale(0); }
+            50% { transform: translateY(-100px) scale(1); }
+        }
+        
+        /* Glowing grid effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 4s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .main-panel {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 
+                0 0 30px #00ff00,
+                inset 0 0 30px rgba(0, 255, 0, 0.1);
+            animation: panelGlow 3s ease-in-out infinite alternate;
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+        }
+        
+        @keyframes panelGlow {
+            from { box-shadow: 0 0 30px #00ff00, inset 0 0 30px rgba(0, 255, 0, 0.1); }
+            to { box-shadow: 0 0 50px #00ff00, inset 0 0 50px rgba(0, 255, 0, 0.2); }
+        }
+        
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+        }
+        
+        .online-status {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 0 0 10px #00ff00;
+            animation: pulse 2s infinite;
+        }
+        
+        .user-info {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 16px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .main-title {
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px #00ff00;
+            letter-spacing: 2px;
+            animation: titleFlicker 1.5s infinite alternate;
+        }
+        
+        @keyframes titleFlicker {
+            0% { text-shadow: 0 0 20px #00ff00; }
+            100% { text-shadow: 0 0 30px #00ff00, 0 0 40px #00ff00; }
+        }
+        
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .button-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .trial-button {
+            background: linear-gradient(45deg, #001100, #003300);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            font-family: 'Courier New', monospace;
+            min-width: 200px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .trial-button:hover {
+            background: linear-gradient(45deg, #002200, #004400);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .trial-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            animation: countdown-glow 1s infinite;
+        }
+        
+        @keyframes countdown-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 0, 0.8); }
+        }
+        
+        .or-divider {
+            color: #00ff00;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 0 20px;
+        }
+        
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .qr-label {
+            color: #00ff00;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+        
+        .qr-container {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            animation: qrPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes qrPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            border-radius: 5px;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #00ff00, rgba(0, 255, 0, 0.5));
+            border-radius: 2px;
+            animation: loading 2s infinite;
+            width: 30%;
+        }
+        
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+        
+        .version-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            padding: 5px 10px;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-size: 12px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        
+        @media (max-width: 600px) {
+            .content-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-panel {
+                padding: 20px;
+            }
+            
+            .or-divider {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles" id="particles"></div>
+    
+    <div class="main-panel">
+        <div class="version-tag">v2.1.3</div>
+        
+        <div class="status-header">
+            <div class="online-status">● ONLINE</div>
+            <div class="user-info">USER: GUEST</div>
+        </div>
+        
+        <div class="main-title">XmStealAbrainrotmX - Trial 3 Days</div>
+        
+        <div class="content-section">
+            <div class="button-section">
+                <a href="https://www.roblox.com/share?code=f09b2ed82d561f44b3935a7c216b2cfa&type=Server" 
+                   class="trial-button" 
+                   target="_blank" 
+                   id="trialBtn">
+                    <span id="btnText">Get Trial Key (5)</span>
+                </a>
+            </div>
+            
+            <div class="or-divider">OR</div>
+            
+            <div class="qr-section">
+                <div class="qr-label">📱 Scan this QR</div>
+                <div class="qr-container">
+                    <canvas class="qr-code" id="qrCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Countdown functionality
+        let countdown = 5;
+        let countdownInterval;
+        
+        function startCountdown() {
+            const btn = document.getElementById('trialBtn');
+            const btnText = document.getElementById('btnText');
+            
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.7';
+            
+            countdownInterval = setInterval(() => {
+                countdown--;
+                btnText.textContent = `Get Trial Key (${countdown})`;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    btnText.textContent = 'Get Trial Key';
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                    btn.style.background = 'linear-gradient(45deg, #004400, #006600)';
+                }
+            }, 1000);
+        }
+        
+        // Generate QR Code
+        function generateQRCode() {
+            const canvas = document.getElementById('qrCanvas');
+            const url = "https://www.roblox.com/share?code=f09b2ed82d561f44b3935a7c216b2cfa&type=Server";
+            
+            QRCode.toCanvas(canvas, url, {
+                width: 150,
+                height: 150,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, function (error) {
+                if (error) console.error(error);
+                console.log('QR Code generated successfully!');
+            });
+        }
+        
+        // Initialize particles and QR code on load
+        window.addEventListener('load', () => {
+            createParticles();
+            generateQRCode();
+            
+            // Auto-start countdown after 2 seconds
+            setTimeout(() => {
+                if (countdown === 5) {
+                    startCountdown();
+                }
+            }, 2000);
+        });
+        
+        // Matrix-like typing effect for title
+        function matrixEffect() {
+            const title = document.querySelector('.main-title');
+            const originalText = title.textContent;
+            const chars = 'XmStealAbrainrotmX0123456789!@#$%^&*()';
+            let iterations = 0;
+            
+            const interval = setInterval(() => {
+                title.textContent = originalText
+                    .split('')
+                    .map((letter, index) => {
+                        if (index < iterations) {
+                            return originalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join('');
+                
+                if (iterations >= originalText.length) {
+                    clearInterval(interval);
+                }
+                
+                iterations += 1/3;
+            }, 30);
+        }
+        
+        // Trigger matrix effect every 10 seconds
+        setInterval(matrixEffect, 10000);
+    </script>
+</body>
+</html>
